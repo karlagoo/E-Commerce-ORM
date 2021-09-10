@@ -13,9 +13,8 @@ router.get('/', (req, res) => {
         model: Tag,
         through: ProductTag
       }
-    ]
+    ],
   // be sure to include its associated Category and Tag data
-
   })
   .then(productData => res.json(productData))
   .catch(err => res.status(500).json(err))
