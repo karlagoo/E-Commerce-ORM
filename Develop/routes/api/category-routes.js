@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
   })
     .then(categoryData => res.json(categoryData))
     .catch(err => res.status(500).json(err))
+    console.log(err)
 });
 
 router.get('/:id', (req, res) => {
@@ -53,7 +54,8 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-  //.destroy
+  .then(categoryData => res.json(categoryData))
+  .catch(err => res.status(500).json(err))
 });
 
 module.exports = router;
