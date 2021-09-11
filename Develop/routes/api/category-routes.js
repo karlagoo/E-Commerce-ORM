@@ -10,10 +10,13 @@ router.get('/', (req, res) => {
   Category.findAll({
     // be sure to include its associated Products
     include: [Product],
-  })
-    .then(categoryData => res.json(categoryData))
-    .catch(err => res.status(500).json(err))
+    
+  }) 
+  .then(categoryData => res.json(categoryData))
+  .catch(err => {
+    res.status(500).json(err)
     console.log(err)
+  })
 });
 
 router.get('/:id', (req, res) => {
