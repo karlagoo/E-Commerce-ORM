@@ -14,12 +14,14 @@ router.get('/', (req, res) => {
         through: ProductTag
       }
     ],
-  // be sure to include its associated Category and Tag data
+    // be sure to include its associated Category and Tag data
   })
-  .then(productData => res.json(productData))
-  .catch(err => res.status(500).json(err))
-    console.log(err)
-  }
+    .then(productData => res.json(productData))
+    .catch(err => {
+      res.status(500).json(err)
+      console.log(err)
+    })
+}
 );
 
 // get one product
@@ -30,10 +32,15 @@ router.get('/:id', (req, res) => {
     },
     include: [
       {
-        model:Tag,
+        model: Tag,
         through: ProductTag
       },
     ],
+  })
+  .then(productData => res.json(productData))
+  .catch(err => {
+    res.status(500).json(err)
+    console.log(err)
   })
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
@@ -120,14 +127,14 @@ router.delete('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-  .then((products)=> {
-    console.log(products);
-    res.json(products);
-  })
-  .catch((err)=>{
-    console.log(err);
-    res.status(500).json(err);
-  })
+    .then((products) => {
+      console.log(products);
+      res.json(products);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    })
 });
 
 module.exports = router;
